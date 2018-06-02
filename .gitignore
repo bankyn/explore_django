@@ -1,0 +1,8 @@
+/explore_django/__pychache__/*
+*.pyc
+*.
+__pycache__
+/static/*
+/media/*
+live.db
+/build/*
