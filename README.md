@@ -1,1 +1,6 @@
-# explore_django with the online course of TreeHouse
+# Web application for Course Management
+
+python
+django 
+
+based on the 'explore django' course of TreeHouse.com
