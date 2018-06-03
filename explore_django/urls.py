@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, re_path
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from . import views
 
@@ -23,3 +24,5 @@ urlpatterns = [
     re_path(r'^courses/', include('courses.urls')),
     re_path(r'^$', views.home),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
