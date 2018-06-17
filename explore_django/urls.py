@@ -21,7 +21,7 @@ from . import views
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
-    re_path(r'^courses/', include('courses.urls')),
+    re_path(r'^courses/', include('courses.urls', namespace='courses2')),
     re_path(r'^$', views.homepage, name='main'),
 ]
 
