@@ -1,9 +1,11 @@
 from django import forms
 from django.core import validators
 
+
 def must_be_empty(value):
     if value:
         raise forms.ValidationError('is not empty')
+
 
 class SuggestionForm(forms.Form):
     name = forms.CharField()

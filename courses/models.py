@@ -33,8 +33,9 @@ class Text(Step):
             'step_pk': self.id
         })
 
+
 class Quiz(Step):
-    questions = models.IntegerField(default=4)
+    total_questions = models.IntegerField(default=4)
 
     class Meta:
         verbose_name_plural = 'Quizzes'
