@@ -1,8 +1,12 @@
-from django.urls import re_path
+from django.urls import re_path, path, include
 from . import views
+
+from django.conf import settings
+from django.conf.urls import include, url
 
 
 app_name = "courses"
+
 urlpatterns = [
     re_path(r'^$', views.course_list, name='list'),
     re_path(r'^(?P<pk>\d+)/$', views.course_detail, name='detail'),
@@ -23,8 +27,7 @@ urlpatterns = [
             views.edit_question, name='edit_question'),
     re_path(r'(?P<question_pk>\d+)/create_answer/$',
         views.answer_form, name='create_answer'),
-
+    re_path(r'by/(?P<teacher>[-\w]+)/$', views.courses_by_teacher,
+            name='by_teacher'),
+    re_path(r'search/$', views.search, name='search'),
 ]
-
-
-

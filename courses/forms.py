@@ -32,9 +32,9 @@ class TrueFalseQuestionForm(QuestionForm):
         ]
 
 
-class MultipleChoiseQuestionForm(QuestionForm):
+class MultipleChoiceQuestionForm(QuestionForm):
     class Meta:
-        model = models.MultipleChoiseQuestion
+        model = models.MultipleChoiceQuestion
         fields = [
             'order',
             'prompt',

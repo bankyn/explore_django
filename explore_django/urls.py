@@ -17,15 +17,22 @@ from django.contrib import admin
 from django.urls import include, re_path, path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from . import views
+from . import views, settings
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^courses/', include('courses.urls', namespace='courses2')),
     re_path(r'^suggest/$', views.suggestion_view, name='suggestion'),
     re_path(r'^$', views.homepage, name='home'),
+
 ]
 
 
-
 urlpatterns += staticfiles_urlpatterns()
+
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+    re_path(r'^__debug__/', include(debug_toolbar.urls)),
+]
