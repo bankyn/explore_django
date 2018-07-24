@@ -4,23 +4,36 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 
+STATUS_CHOISES = (
+    ('i', 'In Progress'),
+    ('r', 'Review'),
+    ('p', 'Published'),
+)
+
+
 class Course(models.Model):
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=255)
     description = models.TextField()
-    teacher = models.ForeignKey(User, on_delete=models.CASCADE)
     subject = models.CharField(default='', max_length=100)
     published = models.BooleanField(default=False)
+    is_live = models.BooleanField(default=False)
+    status = models.CharField(max_length=1, choices=STATUS_CHOISES, default='i')
 
     def __str__(self):
         return self.title
 
+    def time_to_complete(self):
+        from courses.templatetags.course_extras import time_estimate
+        return '{} min'.format(time_estimate(len(self.description.split())))
+
 
 class Step(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     description = models.TextField()
     order = models.IntegerField(default=0)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['order',]
